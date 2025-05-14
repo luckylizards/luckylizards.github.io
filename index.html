@@ -1,39 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Live From The Morgue</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Gothic Font (Google Fonts example) -->
-  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live From The Morgue</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Gothic Font (Google Fonts example) -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="container">
-    <header class="header">
-      <h1>Live From The Morgue</h1>
-    </header>
+    <div class="container">
+        <header class="header">
+            <h1>Live From The Morgue</h1>
+        </header>
 
-    <nav class="navbar">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Tributes</a></li>
-        <li><a href="#">Streams</a></li>
-        <li><a href="#">Members</a></li>
-      </ul>
-    </nav>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Tributes</a></li>
+                <li><a href="#">Streams</a></li>
+                <li><a href="#">Members</a></li>
+            </ul>
+        </nav>
 
-    <div class="content-row">
-      <div class="content-box">Box 1</div>
-      <div class="content-box">Box 2</div>
-      <div class="content-box">Box 3</div>
-      <div class="content-box">Box 4</div>
+        <div class="content-row">
+            <div class="content-box">Box 1
+                <!-- Inside your content box 1 -->
+                <div id="liveContentBox1">Loading content...</div>
+
+                <script>
+                    // Reuse Firebase config
+                    firebase.initializeApp(firebaseConfig);
+                    const db = firebase.firestore();
+
+                    db.collection("siteContent").doc("contentBox1").get()
+                        .then(doc => {
+                            if (doc.exists) {
+                                document.getElementById("liveContentBox1").innerText = doc.data().text;
+                            }
+                        });
+                </script>
+
+            </div>
+            <div class="content-box">Box 2</div>
+            <div class="content-box">Box 3</div>
+            <div class="content-box">Box 4</div>
+        </div>
+
+        <footer class="footer">
+            <p><!-- Footer text goes here --></p>
+        </footer>
     </div>
-
-    <footer class="footer">
-      <p><!-- Footer text goes here --></p>
-    </footer>
-  </div>
 </body>
+
 </html>
